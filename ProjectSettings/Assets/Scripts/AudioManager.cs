@@ -14,12 +14,21 @@ public class AudioManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 	
+			if (Input.GetKeyDown(KeyCode.Space))
+				if (audio.mute)
+					audio.mute = false;
+			else
+				audio.mute = true;
+			
+
+		
 	}
-
+	
 	public void PlayMusic(string clipName){
-
-			for (int i = 0; i < audioNames.Length; i++) {
+		
+		for (int i = 0; i < audioNames.Length; i++) {
 		
 				if(clipName == audioNames[i]) {
 					
@@ -39,4 +48,6 @@ public class AudioManager : MonoBehaviour {
 
 
 	}
+
+
 }

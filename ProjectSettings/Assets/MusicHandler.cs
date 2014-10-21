@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class MusicHandler : MonoBehaviour {
-
+	
 	// Use this for initialization
 	void Start () {
 		
@@ -14,13 +14,6 @@ public class MusicHandler : MonoBehaviour {
 		
 	// Update is called once per frame
 	void Update () {
-	
-
-	//	if (Input.GetKeyDown (KeyCode.Q)) {
-	//			
-	//		SendMessage("PlayMusic","Today");
-	//
-	//	}
 
 	}
 
