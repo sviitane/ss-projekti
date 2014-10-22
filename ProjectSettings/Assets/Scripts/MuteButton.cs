@@ -3,68 +3,47 @@ using System.Collections;
 
 public class MuteButton : MonoBehaviour {
 
-	bool isMuted = false;
+	public Sprite unMuted;
+	public Sprite muted;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	
-	}
+	public GameObject soundPlayer;
+	private bool isPaused;
 
-	public void MuteAudio(string tagname){
-
-			if (!isMuted){
-			isMuted= true;
-			}
-			else {
-			isMuted = false;
-			}
-			
-		var music = GameObject.FindGameObjectWithTag(tagname);
-
-		music.audio.mute= isMuted;
-
+	void Start()
+	{
+		gameObject.GetComponent<SpriteRenderer> ().sprite = unMuted;
+		isPaused = false;
 	}
 
-
-	
-	void OnTouchDown(){
-
-		Debug.Log ("User touched " + this.name);
-		Debug.Log ("Make something happen");
-	}
-	
 	void OnTouchUp(){
-	
-		Debug.Log ("Mutebutton on state: " + isMuted);
+		Debug.Log ("User toggled mute");
 
-		MuteAudio("menuMusic");
+		if (!isPaused) {
+			gameObject.GetComponent<SpriteRenderer> ().sprite = muted;
+			isPaused = true;
+		} else {
+			gameObject.GetComponent<SpriteRenderer> ().sprite = unMuted;
+			isPaused = false;
+		}
 
+		GameObject.Find ("SceneAudioManager").SendMessage ("TogglePause");
 	}
 	
-
-
-//	public void MuteAudio(){
-//
-//		gameObject.audio.mute = true;
-//
-//
-//
-////		if (gameObject.audio.mute)
-////			gameObject.audio.mute = false;
-////		//gameObject.GetComponent<SpriteRenderer> ().sprite = Resources.Load("Media-Controls-Volume-Up-icon", typeof(Sprite)) as Sprite;
-////		
-////		else {
-////			gameObject.audio.mute= true;
-////			//	gameObject.GetComponent<SpriteRenderer> ().sprite = Resources.Load("Media-Controls-Mute-icon", typeof(Sprite)) as Sprite;
-////			
-////		}
-//
-//	}
-
+	//	public void MuteAudio(){
+	//
+	//		gameObject.audio.mute = true;
+	//
+	//
+	//
+	////		if (gameObject.audio.mute)
+	////			gameObject.audio.mute = false;
+	////		//gameObject.GetComponent<SpriteRenderer> ().sprite = Resources.Load("Media-Controls-Volume-Up-icon", typeof(Sprite)) as Sprite;
+	////		
+	////		else {
+	////			gameObject.audio.mute= true;
+	////			//	gameObject.GetComponent<SpriteRenderer> ().sprite = Resources.Load("Media-Controls-Mute-icon", typeof(Sprite)) as Sprite;
+	////			
+	////		}
+	//
+	//	}
 }

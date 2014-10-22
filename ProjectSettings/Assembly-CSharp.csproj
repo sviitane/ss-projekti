@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\MusicHandler.cs" />
+     <Compile Include="Assets\Scripts\ActionButton.cs" />
      <Compile Include="Assets\Scripts\AudioManager.cs" />
      <Compile Include="Assets\Scripts\ContinueButton.cs" />
      <Compile Include="Assets\Scripts\ExitButton.cs" />
