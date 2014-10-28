@@ -20,19 +20,19 @@ public class Touchable : MonoBehaviour {
 
 	// This is the main thing where stuff happens
 	void OnTouchUp(){
-
-
-
-	
-		if (!isInstantiated)
-		    {
-
-		foreach (GameObject action in actions) {
-						
-			Instantiate (action, new Vector2 (transform.position.x + 3f, transform.position.y), Quaternion.identity);
-						
+		float add = 2.0f;
+		if (!isInstantiated && actions.Length > 0) {
+			foreach (GameObject action in actions) {
+				GameObject actionInstance = Instantiate (action, new Vector2 (transform.position.x + add, transform.position.y + 1.5f), Quaternion.identity) as GameObject;
+				actionInstance.transform.parent = gameObject.transform;
+				add += 1.8f;
 			}
+
+			gameObject.collider.enabled = false;
+			
 			isInstantiated = true;
+		} else {
+			Debug.LogError("GameObject" + gameObject.name + " has no actions specified!");
 		}
 	}
 
@@ -43,6 +43,7 @@ public class Touchable : MonoBehaviour {
 	}
 
 	void notInstantiated(){
+		gameObject.collider.enabled = true;
 		isInstantiated = false;
 	}
 
