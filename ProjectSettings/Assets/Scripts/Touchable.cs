@@ -9,6 +9,8 @@ public class Touchable : MonoBehaviour {
 	public Color defaultColor;
 	public Color selectedColor;
 	private Material mat;
+	private bool isInstantiated;
+
 	
 	void Start(){
 	}
@@ -18,9 +20,19 @@ public class Touchable : MonoBehaviour {
 
 	// This is the main thing where stuff happens
 	void OnTouchUp(){
-		foreach (GameObject action in actions){
-			action.transform.position = new Vector2(transform.position.x + 3f, transform.position.y);
-			action.SendMessage("Show");
+
+
+
+	
+		if (!isInstantiated)
+		    {
+
+		foreach (GameObject action in actions) {
+						
+			Instantiate (action, new Vector2 (transform.position.x + 3f, transform.position.y), Quaternion.identity);
+						
+			}
+			isInstantiated = true;
 		}
 	}
 
@@ -28,6 +40,10 @@ public class Touchable : MonoBehaviour {
 	}
 
 	void OnTouchExit(){
+	}
+
+	void notInstantiated(){
+		isInstantiated = false;
 	}
 
 }
