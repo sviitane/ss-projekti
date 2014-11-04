@@ -3,13 +3,20 @@ using System.Collections;
 
 public class Touchable : MonoBehaviour {
 
+	// Store information about objects in here.
+	public string information;
+
+	public bool isTouched = false;
+	public bool isInspected = false;
+	public bool isTalked = false;
+
 	public GameObject[] actions;
 
 	// Colors defined in editor
 	public Color defaultColor;
 	public Color selectedColor;
 	private Material mat;
-	private bool isInstantiated;
+	public bool isInstantiated;
 
 	
 	void Start(){
@@ -29,8 +36,9 @@ public class Touchable : MonoBehaviour {
 			}
 
 			gameObject.collider.enabled = false;
-			
+
 			isInstantiated = true;
+
 		} else {
 			Debug.LogError("GameObject" + gameObject.name + " has no actions specified!");
 		}
@@ -45,6 +53,18 @@ public class Touchable : MonoBehaviour {
 	void notInstantiated(){
 		gameObject.collider.enabled = true;
 		isInstantiated = false;
+	}
+
+	void setInspected(bool val){
+		isInspected = val;
+	}
+
+	void setTouched(bool val){
+		isTouched = val;
+	}
+
+	void setTalked(bool val){
+		isTalked = val;
 	}
 
 }
