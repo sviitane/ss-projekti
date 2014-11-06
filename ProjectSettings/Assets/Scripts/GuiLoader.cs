@@ -2,18 +2,29 @@
 using System.Collections;
 
 public class GuiLoader : MonoBehaviour {
-	public Font f;
 
+	public static GuiLoader loader;
+
+	public Font f;
 	public string text;
+
+	void Awake(){
+		if (loader == null) {
+			DontDestroyOnLoad (gameObject);
+			loader = this;
+		} else if (loader != this) {
+			Destroy (gameObject);
+		}
+	}
 
 	void OnGUI(){
 		if (!f) {
 			Debug.LogError("No Font found, add one in inspector");
 			return;
 		}
-
-		GUI.Box (new Rect (120, 20, 340, 120), "Action");
-		GUI.Label (new Rect (125, 40, 335, 115), text);
+		GUI.skin.font = f;
+		GUI.Box (new Rect (120, 20, Screen.width - 240, 100), "Action");
+		GUI.Label (new Rect (125, 40, Screen.width - 250, 115), text);
 
 
 		/*

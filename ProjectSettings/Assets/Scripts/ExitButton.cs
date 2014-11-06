@@ -8,6 +8,9 @@ public class ExitButton : MonoBehaviour {
 	private Material mat;
 
 	void Start(){
+		gameObject.GetComponent<MeshRenderer> ().sortingLayerName = "Foreground";
+		gameObject.GetComponent<MeshRenderer> ().sortingOrder = 1;
+
 		mat = renderer.material;
 		mat.color = defaultColor;
 	}

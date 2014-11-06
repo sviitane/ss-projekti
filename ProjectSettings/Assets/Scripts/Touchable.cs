@@ -27,12 +27,12 @@ public class Touchable : MonoBehaviour {
 
 	// This is the main thing where stuff happens
 	void OnTouchUp(){
-		float add = 2.0f;
+		float add = 1.0f;
 		if (!isInstantiated && actions.Length > 0) {
 			foreach (GameObject action in actions) {
 				GameObject actionInstance = Instantiate (action, new Vector2 (transform.position.x + add, transform.position.y + 1.5f), Quaternion.identity) as GameObject;
 				actionInstance.transform.parent = gameObject.transform;
-				add += 1.8f;
+				add += 1.5f;
 			}
 
 			gameObject.collider.enabled = false;
@@ -57,15 +57,15 @@ public class Touchable : MonoBehaviour {
 		isInstantiated = false;
 	}
 
-	void setInspected(bool val){
+	public void setInspected(bool val){
 		isInspected = val;
 	}
 
-	void setTouched(bool val){
+	public void setTouched(bool val){
 		isTouched = val;
 	}
 
-	void setTalked(bool val){
+	public void setTalked(bool val){
 		isTalked = val;
 	}
 

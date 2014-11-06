@@ -28,5 +28,6 @@ public class ActionButton : MonoBehaviour {
 			Debug.LogError("No actions as child element!");
 		}
 		transform.localScale = new Vector3 (transform.localScale.x - 0.02f, transform.localScale.y - 0.02f, transform.localScale.z);
+		InteractiveAudioManager.audioManager.PlaySound ("blop");
 	}
 }
