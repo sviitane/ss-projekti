@@ -37,18 +37,23 @@ public class ActionButton : MonoBehaviour {
 			}
 
 			if(GuiLoader.loader){
-				if(actionFlag == "Inspect_Action"){
+				if(actionFlag == "Inspect"){
 					// See if parent is touchable
 					if(gameObject.transform.parent.GetComponent<Touchable>()){
 						string info = gameObject.transform.parent.GetComponent<Touchable>().information;
-						GuiLoader.loader.changeTextWithParam(clickString, info);
+						GuiLoader.loader.changeText(clickString + info);
 					}else{
 						// This should never happen
 						Debug.Log("Parent is not touchable");
 					}
-				}else{
+					gameObject.transform.parent.SendMessage("setInspected", true);
+				}else if(actionFlag == "Talk"){
 					GuiLoader.loader.changeText(clickString);
-				}
+					gameObject.transform.parent.SendMessage("setTalked", true);
+				}else if(actionFlag == "Touch"){
+					GuiLoader.loader.changeText(clickString);
+					gameObject.transform.parent.SendMessage("setTouched", true);
+                }
 			}
             
 		} else {

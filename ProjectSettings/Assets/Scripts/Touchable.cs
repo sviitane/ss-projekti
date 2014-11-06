@@ -16,6 +16,9 @@ public class Touchable : MonoBehaviour {
 	// Store information about objects in here.
 	public string information;
 
+	// Currently its easier to set the starting text in objects like this, but this should be done better.
+	public string startText;
+    
 	public bool isTouched = false;
 	public bool isInspected = false;
 	public bool isTalked = false;
@@ -31,6 +34,17 @@ public class Touchable : MonoBehaviour {
 
 	
 	void Start(){
+		GuiLoader.loader.changeText (startText);
+		GuiLoader.loader.mapCleared = false;
+	}
+
+	void Update(){
+
+		//TODO: This has to be made dynamic, so that we can define what actions complete the map, currently all actions have to be done
+		if(isTouched && isInspected && isTalked){
+			GuiLoader.loader.mapCleared = true;
+
+		}
 	}
 
 	void OnTouchDown(){
