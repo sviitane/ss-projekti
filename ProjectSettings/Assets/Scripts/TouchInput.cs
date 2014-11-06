@@ -32,7 +32,6 @@ public class TouchInput : MonoBehaviour {
 			if(Physics.Raycast(ray, out hit, touchInputMask)){
 				GameObject recipient = hit.transform.gameObject;
 				Debug.Log("Click recipient: " + recipient.name);
-				changeGuiText(recipient);
 				// Add the touch to our touchList
 				touchList.Add (recipient);
 				
@@ -73,8 +72,6 @@ public class TouchInput : MonoBehaviour {
 					// Add the touch to our touchList
 					touchList.Add (recipient);
 
-					changeGuiText(recipient);
-
 					if(touch.phase == TouchPhase.Began){
 						recipient.SendMessage("OnTouchDown", hit.point, SendMessageOptions.DontRequireReceiver);
 					}
@@ -101,42 +98,4 @@ public class TouchInput : MonoBehaviour {
 			}
 		}
 	}
-
-	private void changeGuiText(GameObject recipient){
-	// A framework for changing the gui text in our tutorial.
-		Debug.Log ("Attempting to change text");
-		GameObject gui = GameObject.Find ("GUILoader") as GameObject;
-		if (gui != null) {
-			string info = "";
-			bool touchedCat = false;
-			bool inspectedCat = false;
-			bool talkedCat = false;
-			if(recipient.GetComponent<Touchable>() != null){
-				info = recipient.GetComponent<Touchable> ().information;
-				touchedCat = recipient.GetComponent<Touchable>().isTouched;
-				inspectedCat = recipient.GetComponent<Touchable>().isInspected;
-				talkedCat = recipient.GetComponent<Touchable>().isTalked;
-			}
-
-			//Ghost cat
-			if (recipient.name == "GhostCat") {
-				gui.SendMessage ("changeText", "Congratulations, you clicked the cat. Now some actions have appeared next to the cat, you can try to click these actions and see what happens.");
-			}else if(recipient.tag == "Inspect" && recipient.transform.parent.name == "GhostCat" && !inspectedCat){
-				gui.SendMessage ("changeText", "Well done, you clicked the Inspect action, inspecting usually reveals information about the touched object, this cat has following information: " + info);
-				recipient.transform.parent.SendMessage("setInspected", true);
-			}else if(recipient.tag == "Talk" && recipient.transform.parent.name == "GhostCat" && !talkedCat){
-				gui.SendMessage("changeText", "You talked to the cat... The cat does not seem to react.");
-				recipient.transform.parent.SendMessage("setTalked", true);
-			}else if(recipient.tag == "Touch" && recipient.transform.parent.name == "GhostCat" && !touchedCat){
-				gui.SendMessage("changeText", "You touched the cat, the cat seems to be friendly.");
-				recipient.transform.parent.SendMessage("setTouched", true);
-			}else if(touchedCat &&  inspectedCat && talkedCat){
-				gui.SendMessage("changeText", "Congratulations, you have learned the basic actions in this game! You are ready to move to the next place. Click on the arrow to move.");
-			}
-
-		} else {
-			Debug.LogError("No GUILoader element in the scene!");
-		}
-	}
-
 }
