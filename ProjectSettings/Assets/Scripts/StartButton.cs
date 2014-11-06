@@ -19,6 +19,7 @@ public class StartButton : MonoBehaviour {
 	void OnTouchUp(){
 		mat.color = defaultColor;
 		Debug.Log ("Changing map");
+		InteractiveAudioManager.audioManager.PlaySound ("blop");
 		Application.LoadLevel ("Tut_Level1");
 	}
 	void OnTouchStay(){

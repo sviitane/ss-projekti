@@ -39,6 +39,8 @@ public class Touchable : MonoBehaviour {
 
 			isInstantiated = true;
 
+			InteractiveAudioManager.audioManager.PlaySound("blop");
+
 		} else {
 			Debug.LogError("GameObject" + gameObject.name + " has no actions specified!");
 		}
