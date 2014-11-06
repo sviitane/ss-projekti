@@ -48,12 +48,13 @@ public class TouchInput : MonoBehaviour {
 					recipient.SendMessage("OnTouchStay", hit.point, SendMessageOptions.DontRequireReceiver);
 				}
 			}
-			
+			/*
 			foreach(GameObject g in touchesOld){
 				if(!touchList.Contains(g)){
 					g.SendMessage("OnTouchExit", hit.point, SendMessageOptions.DontRequireReceiver);
 				}
 			}
+			*/
 		}
 #endif
 
