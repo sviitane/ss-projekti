@@ -49,11 +49,11 @@
      <Compile Include="Assets\Scripts\ActionButton.cs" />
      <Compile Include="Assets\Scripts\AlterGameControls.cs" />
      <Compile Include="Assets\Scripts\AudioManager.cs" />
-     <Compile Include="Assets\Scripts\ContinueButton.cs" />
      <Compile Include="Assets\Scripts\ExitButton.cs" />
      <Compile Include="Assets\Scripts\GameControl.cs" />
      <Compile Include="Assets\Scripts\GuiLoader.cs" />
      <Compile Include="Assets\Scripts\InteractiveAudioManager.cs" />
+     <Compile Include="Assets\Scripts\LoadButton.cs" />
      <Compile Include="Assets\Scripts\MuteButton.cs" />
      <Compile Include="Assets\Scripts\StartButton.cs" />
      <Compile Include="Assets\Scripts\TouchInput.cs" />

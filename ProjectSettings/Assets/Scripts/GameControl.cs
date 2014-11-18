@@ -12,7 +12,7 @@ public class GameControl : MonoBehaviour {
 	public int experience;
 	public int karma;
 	public int chaos;
-	
+	public bool newGame;
 
 	public void Awake () {
 	
@@ -25,22 +25,23 @@ public class GameControl : MonoBehaviour {
 		}
 		if (control != this) {
 			Destroy(gameObject);
-			Debug.Log ("SHIT");
 		}
 	}
 
 
 	void Start () {
-				if (Application.loadedLevelName == "Menu")
-						Load ();
-		}
+		newGame = false;
+	}
 
 	public void OnGUI(){
 
-		GUI.Label(new Rect (10, 10, 100, 30), "Health: " + health);
-		GUI.Label(new Rect (120, 10, 120, 30), "Exp : " + experience);
-		GUI.Label(new Rect (230, 10, 100, 30), "Karma: " + karma);
-		GUI.Label(new Rect (340, 10, 120, 30), "Chaos : " + chaos);
+		// Only display stats in game mode, not in menu
+		if (Application.loadedLevel != 0) {
+			GUI.Label (new Rect (10, Screen.height - 45, 100, 40), "Health: " + health);
+			GUI.Label (new Rect (120, Screen.height - 45, 120, 40), "Exp : " + experience);
+			GUI.Label (new Rect (230, Screen.height - 45, 100, 40), "Karma: " + karma);
+			GUI.Label (new Rect (340, Screen.height - 45, 120, 40), "Chaos : " + chaos);
+		}
 	
 	
 	}
@@ -49,11 +50,15 @@ public class GameControl : MonoBehaviour {
 		BinaryFormatter bf = new BinaryFormatter();
 		FileStream file = File.Create(Application.persistentDataPath +"/playerInfo.dat");
 
+		// Save data into PlayerData object
 		PlayerData data = new PlayerData();
 		data.health = health;
 		data.experience = experience;
 		data.chaos = chaos;
 		data.karma = karma;
+		// Save loaded level if its greater than already saved loaded level or a new game is started
+		Debug.Log("Game saved");
+		data.loadedLevel = Application.loadedLevel;
 
 		bf.Serialize (file, data);
 
@@ -64,16 +69,22 @@ public class GameControl : MonoBehaviour {
 
 	public void Load(){
 
-		if (File.Exists(Application.persistentDataPath + "/playerInfo.dat")) {
-						BinaryFormatter bf = new BinaryFormatter ();
-						var appPath = Application.persistentDataPath + "/playerInfo.dat";
-						FileStream file = File.Open(appPath, FileMode.Open);
+		if (fileExists()) {
+			BinaryFormatter bf = new BinaryFormatter ();
+			var appPath = Application.persistentDataPath + "/playerInfo.dat";
+			FileStream file = File.Open(appPath, FileMode.Open);
 
-						PlayerData data = (PlayerData)bf.Deserialize (file);
-						health = data.health;	
-						experience = data.experience;
-						chaos = data.chaos;
-						karma= data.karma;
+			PlayerData data = (PlayerData)bf.Deserialize (file);
+
+			file.Close();
+
+			health = data.health;	
+			experience = data.experience;
+			chaos = data.chaos;
+			karma = data.karma;
+
+			Debug.Log("Loading saved level " + data.loadedLevel);
+			Application.LoadLevel(data.loadedLevel);
 			
 			Debug.Log("Loaded game, Path is : " + appPath +"/playerInfo.dat" );
 
@@ -86,10 +97,28 @@ public class GameControl : MonoBehaviour {
 			Debug.Log("No saved data" );
 		}
 	}
+
+	public Boolean fileExists(){
+		if (File.Exists (Application.persistentDataPath + "/playerInfo.dat")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public void startNewGame(){
+		newGame = true;
+		health = 100;	
+		experience = 0;
+		chaos = 0;
+		karma= 0;
+		
+		Debug.Log("Started new game");
+	}
 	
 	[Serializable]
 	class PlayerData {
-		
+		public int loadedLevel;
 		public int health;
 		public int experience;
 		public int karma;
