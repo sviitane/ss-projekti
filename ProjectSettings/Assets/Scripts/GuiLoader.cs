@@ -60,7 +60,7 @@ public class GuiLoader : MonoBehaviour {
 					InteractiveAudioManager.audioManager.PlaySound("blop");
 					Application.LoadLevel(nextLevel);
 					//Save game
-					GameControl.control.Save();
+					GameControl.control.Save(nextLevel);
 					mapCleared = false;
 					text = "";
                 };

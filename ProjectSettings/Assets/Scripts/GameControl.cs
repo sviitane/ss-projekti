@@ -46,7 +46,7 @@ public class GameControl : MonoBehaviour {
 	
 	}
 	
-	public void Save(){
+	public void Save(int level){
 		BinaryFormatter bf = new BinaryFormatter();
 		FileStream file = File.Create(Application.persistentDataPath +"/playerInfo.dat");
 
@@ -57,8 +57,9 @@ public class GameControl : MonoBehaviour {
 		data.chaos = chaos;
 		data.karma = karma;
 		// Save loaded level if its greater than already saved loaded level or a new game is started
-		Debug.Log("Game saved");
-		data.loadedLevel = Application.loadedLevel;
+		data.loadedLevel = level;
+
+		Debug.Log("Game saved to level " + data.loadedLevel);
 
 		bf.Serialize (file, data);
 

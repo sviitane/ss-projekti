@@ -15,9 +15,6 @@ public class Touchable : MonoBehaviour {
 
 	// Store information about objects in here.
 	public string information;
-
-	// Currently its easier to set the starting text in objects like this, but this should be done better.
-	public string startText;
     
 	public bool isTouched = false;
 	public bool isInspected = false;
@@ -34,8 +31,6 @@ public class Touchable : MonoBehaviour {
 
 	
 	void Start(){
-		GuiLoader.loader.changeText (startText);
-		GuiLoader.loader.mapCleared = false;
 	}
 
 	void Update(){
@@ -69,22 +64,22 @@ public class Touchable : MonoBehaviour {
 			// Make sure that the actions do not get instantiated again
 			isInstantiated = true;
 
-			// Check that IA audiomanager exists and play sound when clicking
-			if(InteractiveAudioManager.audioManager){
-				InteractiveAudioManager.audioManager.PlaySound("blop");
-			}
-
-			// Check that guiloader exists and clickText exists, and if it does, change the text.
-			if(GuiLoader.loader && clickText != "" && clickText != null){
-				GuiLoader.loader.changeText(clickText);
-			}else if(clickText == "" || clickText == null){
-				Debug.LogWarning("No click text specified for TouchableElement" + gameObject.name);
-			}else{
-				Debug.LogError("GuiLoader does not exist");
-			}
-
 		} else {
 			Debug.LogError("GameObject" + gameObject.name + " has no actions specified!");
+		}
+
+		// Check that IA audiomanager exists and play sound when clicking
+		if(InteractiveAudioManager.audioManager){
+			InteractiveAudioManager.audioManager.PlaySound("blop");
+		}
+		
+		// Check that guiloader exists and clickText exists, and if it does, change the text.
+		if(GuiLoader.loader && clickText != "" && clickText != null){
+			GuiLoader.loader.changeText(clickText);
+		}else if(clickText == "" || clickText == null){
+			Debug.LogWarning("No click text specified for TouchableElement" + gameObject.name);
+		}else{
+			Debug.LogError("GuiLoader does not exist");
 		}
 	}
 
