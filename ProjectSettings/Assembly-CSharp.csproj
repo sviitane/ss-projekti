@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\InteractiveAudioManager.cs" />
      <Compile Include="Assets\Scripts\LoadButton.cs" />
      <Compile Include="Assets\Scripts\MuteButton.cs" />
+     <Compile Include="Assets\Scripts\ScrollableView.cs" />
      <Compile Include="Assets\Scripts\StartButton.cs" />
      <Compile Include="Assets\Scripts\TextChanger.cs" />
      <Compile Include="Assets\Scripts\TextHandler.cs" />
@@ -62,6 +63,8 @@
      <Compile Include="Assets\Scripts\Touchable.cs" />
      <Compile Include="Assets\Scripts\TouchableClass.cs" />
      <Compile Include="Assets\Scripts\TutorialHelper.cs" />
+     <None Include="Assets\TextFiles\MyTest1.txt" />
+     <None Include="Assets\TextFiles\MyTest2.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

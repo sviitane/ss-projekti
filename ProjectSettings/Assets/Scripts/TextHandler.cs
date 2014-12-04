@@ -2,65 +2,65 @@
 using System.Collections;
 using System.Text;
 using System.IO;
+using System;
 
 public class TextHandler : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	public static TextHandler textHandler;
 
-	private bool LoadText(string fileName)
+	public string lines;
+
+	public GUIStyle customBoxStyle;
+	public GUIStyle customLabelStyle;
+	public GUIStyle customButtonStyle;
+	public Vector2 scrollPosition = Vector2.zero;
+
+	void Awake(){
+		if (textHandler == null) {
+			DontDestroyOnLoad (gameObject);
+			textHandler = this;
+		} else if (textHandler != this) {
+			Destroy (gameObject);
+		}
+	}
+	
+
+	public void LoadText(string fileName)
 	{
-		// Handle any problems that might arise when reading the text
 		try
 		{
-			string line;
-			// Create a new StreamReader, tell it which file to read and what encoding the file
-			// was saved as
 			StreamReader theReader = new StreamReader(fileName, Encoding.Default);
-			
-			// Immediately clean up the reader after this block of code is done.
-			// You generally use the "using" statement for potentially memory-intensive objects
-			// instead of relying on garbage collection.
-			// (Do not confuse this with the using directive for namespace at the
-			// beginning of a class!)
-			using (theReader)
-			{
-				// While there's lines left in the text file, do this:
-				do
-				{
-					line = theReader.ReadLine();
-					if (line != null)
-					{
-						// Do whatever you need to do with the text line, it's a string now
-						// In this example, I split it into arguments based on comma
-						// deliniators, then send that array to DoStuff()
-						string[] entries = line.Split(',');
-//						if (entries.Length > 0)
-//							DoStuff(entries);
-					}
-				}
-				while (line != null);
-				
-				// Done reading, close the reader and return true to broadcast success
-				theReader.Close();
-				return true;
-			}
-		}
-		
-		// If anything broke in the try block, we throw an exception with information
-		// on what didn't work
-		catch (System.Exception e)
-		{
-			Debug.Log ("Trouble loading text" + e.Message);
 
-			return false;
+			lines = theReader.ReadToEnd();
+
+			theReader.Close();
 		}
+		catch (Exception e)
+		{
+			Debug.Log ("Trouble loading text" );
+		}
+
 	}
+
+
+//	void OnGUI()
+//	{
+//
+//
+////		GUI.BeginGroup(Rect(0,395,250,305));  //note the 250 width and 305 height compared to the scrollview size
+////		scrollPosition = GUILayout.BeginScrollView(scrollPosition, GUILayout.Width(240), GUILayout.Height(275));
+////		GUILayout.Label(lines);
+////		GUILayout.EndScrollView();
+////		GUI.EndGroup();
+//
+////		scrollPosition = GUI.BeginScrollView(new Rect(50, 50, 100, 100), scrollPosition, new Rect(0, 0, 220, 200));
+////		GUILayout.Label(text);
+////		GUI.Button(new Rect(0, 0, 100, 20), "Top-left");
+////		GUI.Button(new Rect(120, 0, 100, 20), "Top-right");
+////		GUI.Button(new Rect(0, 180, 100, 20), "Bottom-left");
+////		GUI.Button(new Rect(120, 180, 100, 20), "Bottom-right");
+//		//GUI.EndScrollView();
+//	}
+
+
 }
