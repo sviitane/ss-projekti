@@ -20,8 +20,6 @@ public class GameControl : MonoBehaviour {
 
 			DontDestroyOnLoad(gameObject);
 			control = this;
-
-			Debug.Log ("DO NOT DESTROY");
 		}
 		if (control != this) {
 			Destroy(gameObject);
@@ -37,10 +35,13 @@ public class GameControl : MonoBehaviour {
 
 		// Only display stats in game mode, not in menu
 		if (Application.loadedLevel != 0) {
-			GUI.Label (new Rect (10, Screen.height - 45, 100, 40), "Health: " + health);
-			GUI.Label (new Rect (120, Screen.height - 45, 120, 40), "Exp : " + experience);
-			GUI.Label (new Rect (230, Screen.height - 45, 100, 40), "Karma: " + karma);
-			GUI.Label (new Rect (340, Screen.height - 45, 120, 40), "Chaos : " + chaos);
+			var style = new GUIStyle();
+			style.fontSize = 17;
+			style.normal.textColor = Color.white;
+			GUI.Label (new Rect (10, Screen.height - 30, 80, 20), "Health : " + health, style);
+			GUI.Label (new Rect (120, Screen.height - 30, 100, 20), "Exp : " + experience, style);
+//			GUI.Label (new Rect (230, Screen.height - 45, 100, 40), "Karma: " + karma);
+//			GUI.Label (new Rect (340, Screen.height - 45, 120, 40), "Chaos : " + chaos);
 		}
 	
 	
@@ -116,7 +117,24 @@ public class GameControl : MonoBehaviour {
 		
 		Debug.Log("Started new game");
 	}
+
 	
+	public void AddExperience(int exp){
+		experience = experience + exp;
+	}
+
+	public void AddOrReduceKarma(int amount){
+		karma = karma + amount ;
+	}
+
+	public void AddOrReduceChaos(int amount){
+		chaos = chaos + amount ;
+	}
+
+	public void AddOrReduceHelath(int hp){
+		health = health + hp;
+	}
+
 	[Serializable]
 	class PlayerData {
 		public int loadedLevel;

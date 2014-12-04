@@ -58,6 +58,7 @@ public class GuiLoader : MonoBehaviour {
 			if(mapCleared){
 				if(GUI.Button (new Rect (Screen.width - 180, 230, 70, 70), continueAction, customButtonStyle)){
 					InteractiveAudioManager.audioManager.PlaySound("blop");
+					GameControl.control.AddExperience(100);
 					Application.LoadLevel(nextLevel);
 					//Save game
 					GameControl.control.Save(nextLevel);
