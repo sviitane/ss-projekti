@@ -47,7 +47,7 @@ public class Touchable : MonoBehaviour {
 
 	// This is the main thing where stuff happens
 	void OnTouchUp(){
-		if(GuiLoader.loader.storyMode = false){
+		if(!GuiLoader.loader.storyMode){
 			float add = 1.0f;
 			//Instantiate all listed actions 1.5f up and 1 + 1.5f between each other
 			if (!isInstantiated && actions.Length > 0) {
