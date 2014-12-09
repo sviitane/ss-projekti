@@ -47,39 +47,43 @@ public class Touchable : MonoBehaviour {
 
 	// This is the main thing where stuff happens
 	void OnTouchUp(){
-		float add = 1.0f;
-		//Instantiate all listed actions 1.5f up and 1 + 1.5f between each other
-		if (!isInstantiated && actions.Length > 0) {
-			foreach (Action action in actions) {
-				GameObject actionInstance = Instantiate (action.actionObject, new Vector2 (transform.position.x + add, transform.position.y + 1.5f), Quaternion.identity) as GameObject;
-				actionInstance.transform.parent = gameObject.transform;
-				actionInstance.GetComponent<ActionButton>().actionFlag = action.actionFlag;
-				actionInstance.GetComponent<ActionButton>().clickString = action.clickText;
-				add += 1.5f;
+		if(GuiLoader.loader.storyMode = false){
+			float add = 1.0f;
+			//Instantiate all listed actions 1.5f up and 1 + 1.5f between each other
+			if (!isInstantiated && actions.Length > 0) {
+				foreach (Action action in actions) {
+					GameObject actionInstance = Instantiate (action.actionObject, new Vector2 (transform.position.x + add, transform.position.y + 1.5f), Quaternion.identity) as GameObject;
+					actionInstance.transform.parent = gameObject.transform;
+					actionInstance.GetComponent<ActionButton>().actionFlag = action.actionFlag;
+					actionInstance.GetComponent<ActionButton>().clickString = action.clickText;
+					add += 1.5f;
+				}
+
+				// Disable collider for touchable object after it has been clicked to avoid confusion
+				gameObject.collider.enabled = false;
+
+				// Make sure that the actions do not get instantiated again
+				isInstantiated = true;
+
+			} else {
+				Debug.LogError("GameObject" + gameObject.name + " has no actions specified!");
 			}
 
-			// Disable collider for touchable object after it has been clicked to avoid confusion
-			gameObject.collider.enabled = false;
-
-			// Make sure that the actions do not get instantiated again
-			isInstantiated = true;
-
-		} else {
-			Debug.LogError("GameObject" + gameObject.name + " has no actions specified!");
-		}
-
-		// Check that IA audiomanager exists and play sound when clicking
-		if(InteractiveAudioManager.audioManager){
-			InteractiveAudioManager.audioManager.PlaySound("blop");
-		}
-		
-		// Check that guiloader exists and clickText exists, and if it does, change the text.
-		if(GuiLoader.loader && clickText != "" && clickText != null){
-			GuiLoader.loader.changeText(clickText);
-		}else if(clickText == "" || clickText == null){
-			Debug.LogWarning("No click text specified for TouchableElement" + gameObject.name);
+			// Check that IA audiomanager exists and play sound when clicking
+			if(InteractiveAudioManager.audioManager){
+				InteractiveAudioManager.audioManager.PlaySound("blop");
+			}
+			
+			// Check that guiloader exists and clickText exists, and if it does, change the text.
+			if(GuiLoader.loader && clickText != "" && clickText != null){
+				GuiLoader.loader.changeText(clickText);
+			}else if(clickText == "" || clickText == null){
+				Debug.LogWarning("No click text specified for TouchableElement" + gameObject.name);
+			}else{
+				Debug.LogError("GuiLoader does not exist");
+			}
 		}else{
-			Debug.LogError("GuiLoader does not exist");
+			Debug.Log("Story mode is active, actions are disabled!");
 		}
 	}
 

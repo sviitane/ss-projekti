@@ -10,5 +10,6 @@ public class TextChanger : MonoBehaviour {
 	void Start () {
 		GuiLoader.loader.changeText (startText);
 		GuiLoader.loader.mapCleared = false;
+		GuiLoader.loader.storyMode = true;
 	}
 }
