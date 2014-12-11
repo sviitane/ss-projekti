@@ -8,6 +8,9 @@ public class ActionButton : MonoBehaviour {
 	// ActionFlag is a specifig flag to determine which action we are using. We might need to know this for some actions
 	public string actionFlag;
 
+	// If we want this action to trigger part of the story
+	public bool isStoryTrigger { get; set; }
+
 	void Start(){
 	}
 
@@ -36,7 +39,7 @@ public class ActionButton : MonoBehaviour {
 				Debug.LogError ("No actions as child element!");
 			}
 
-			if(GuiLoader.loader){
+			if(GuiLoader.loader && !isStoryTrigger){
 				if(actionFlag == "Inspect"){
 					// See if parent is touchable
 					if(gameObject.transform.parent.GetComponent<Touchable>()){
@@ -54,6 +57,8 @@ public class ActionButton : MonoBehaviour {
 					GuiLoader.loader.changeText(clickString);
 					gameObject.transform.parent.SendMessage("setTouched", true);
                 }
+			}else if(isStoryTrigger){
+				GuiLoader.loader.storyMode = true;
 			}
             
 		} else {

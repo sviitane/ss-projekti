@@ -6,6 +6,7 @@ public class Action{
 	public GameObject actionObject;
 	public string actionFlag;
 	public string clickText;
+	public bool isStoryTrigger;
 }
 
 public class Touchable : MonoBehaviour {
@@ -56,6 +57,7 @@ public class Touchable : MonoBehaviour {
 					actionInstance.transform.parent = gameObject.transform;
 					actionInstance.GetComponent<ActionButton>().actionFlag = action.actionFlag;
 					actionInstance.GetComponent<ActionButton>().clickString = action.clickText;
+					actionInstance.GetComponent<ActionButton>().isStoryTrigger = action.isStoryTrigger;
 					add += 1.5f;
 				}
 
