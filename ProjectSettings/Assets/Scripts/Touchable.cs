@@ -53,12 +53,16 @@ public class Touchable : MonoBehaviour {
 			//Instantiate all listed actions 1.5f up and 1 + 1.5f between each other
 			if (!isInstantiated && actions.Length > 0) {
 				foreach (Action action in actions) {
-					GameObject actionInstance = Instantiate (action.actionObject, new Vector2 (transform.position.x + add, transform.position.y + 1.5f), Quaternion.identity) as GameObject;
-					actionInstance.transform.parent = gameObject.transform;
-					actionInstance.GetComponent<ActionButton>().actionFlag = action.actionFlag;
-					actionInstance.GetComponent<ActionButton>().clickString = action.clickText;
-					actionInstance.GetComponent<ActionButton>().isStoryTrigger = action.isStoryTrigger;
-					add += 1.5f;
+					if((action.actionFlag == "Talk" && !isTalked) || (action.actionFlag == "Inspect" && !isInspected) || (action.actionFlag == "Touch" && !isTouched)){
+						GameObject actionInstance = Instantiate (action.actionObject, new Vector2 (transform.position.x + add, transform.position.y + 1.5f), Quaternion.identity) as GameObject;
+						actionInstance.transform.parent = gameObject.transform;
+						actionInstance.GetComponent<ActionButton>().actionFlag = action.actionFlag;
+						actionInstance.GetComponent<ActionButton>().clickString = action.clickText;
+						actionInstance.GetComponent<ActionButton>().isStoryTrigger = action.isStoryTrigger;
+						add += 1.5f;
+					}else{
+						Debug.LogWarning("Unknown action or action has been used");
+					}
 				}
 
 				// Disable collider for touchable object after it has been clicked to avoid confusion

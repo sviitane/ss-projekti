@@ -33,7 +33,7 @@ public class AudioManager : MonoBehaviour {
 			PlayMusic ("stars");
 		else if(Application.loadedLevelName == "Tut_Level2")
 			PlayMusic ("thunder");
-		else if(Application.loadedLevelName == "Tut_Level3")
+		else if(Application.loadedLevelName == "Level1")
 			PlayMusic ("ode");
 	}
 	

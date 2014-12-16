@@ -8,6 +8,9 @@ public class ActionButton : MonoBehaviour {
 	// ActionFlag is a specifig flag to determine which action we are using. We might need to know this for some actions
 	public string actionFlag;
 
+	// If we want to remove this action from the parents action list after it's been clicked
+	public bool removeActionAfterUse;
+
 	// If we want this action to trigger part of the story
 	public bool isStoryTrigger { get; set; }
 
@@ -59,6 +62,13 @@ public class ActionButton : MonoBehaviour {
                 }
 			}else if(isStoryTrigger){
 				GuiLoader.loader.storyMode = true;
+				if(actionFlag == "Inspect"){
+					gameObject.transform.parent.SendMessage("setInspected", true);
+				}else if(actionFlag == "Talk"){
+					gameObject.transform.parent.SendMessage("setTalked", true);
+				}else if(actionFlag == "Touch"){
+					gameObject.transform.parent.SendMessage("setTouched", true);
+				}
 			}
             
 		} else {
