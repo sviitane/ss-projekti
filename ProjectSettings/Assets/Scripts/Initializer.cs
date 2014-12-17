@@ -17,5 +17,7 @@ public class Initializer : MonoBehaviour {
 		GuiLoader.loader.mapCleared = false;
 		GuiLoader.loader.storyMode = setStoryModeInStart;
 		GuiLoader.loader.displayOtherText = false;
+		GuiLoader.loader.selectScene = "";
+		GuiLoader.loader.goToSceneAfterStory = false; 
 	}
 }

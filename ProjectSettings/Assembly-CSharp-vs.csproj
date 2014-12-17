@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\ActionButton.cs" />
      <Compile Include="Assets\Scripts\AlterGameControls.cs" />
+     <Compile Include="Assets\Scripts\AnimationScripts.cs" />
      <Compile Include="Assets\Scripts\AudioManager.cs" />
      <Compile Include="Assets\Scripts\ExitButton.cs" />
      <Compile Include="Assets\Scripts\GameControl.cs" />
