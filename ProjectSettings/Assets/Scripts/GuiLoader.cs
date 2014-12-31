@@ -154,6 +154,8 @@ public class GuiLoader : MonoBehaviour {
 			}
 
 		}else{
+
+			//Todo: addcheck
 			goodOption.gameObject.SetActive(false);
 			badOption.gameObject.SetActive(false);
 			nextButton.gameObject.SetActive(true);

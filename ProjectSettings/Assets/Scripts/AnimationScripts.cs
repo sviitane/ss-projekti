@@ -13,16 +13,8 @@ public class AnimationScripts : MonoBehaviour {
 		beginTimer ();
 	}
 
-//	// 6 o clock in the morning and I just want a damn timed event to work
-//	void Update()
-//	{
-//		timeLeft -= Time.deltaTime;
-//		if(timeLeft < 0)
-//		{
-//			Application.LoadLevel ("Tut_Level1");
-//		}
-//
-//	}
+//	6 o clock in the morning and I just want a damn timed event to work
+
 
 	void beginTimer()
 	{
@@ -32,11 +24,9 @@ public class AnimationScripts : MonoBehaviour {
 	void Update(){
 		if(isTiming)
 		{
-			//+= is the same thing as adding to the current variable
-			//timer = timer + time.delatime is the same thing as time +=... its just faster to use +=
 			timer += Time.deltaTime;
 		}
-		if (timer > 7)
+		if (timer > 6.5)
 		{
 			EndTimer();
 				Application.LoadLevel ("Tut_Level1");
@@ -46,6 +36,5 @@ public class AnimationScripts : MonoBehaviour {
 		isTiming = false;
 	}
 
-	
 }
 
