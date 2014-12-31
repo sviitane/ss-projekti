@@ -50,7 +50,6 @@
      <Compile Include="Assets\Scripts\AlterGameControls.cs" />
      <Compile Include="Assets\Scripts\AnimationScripts.cs" />
      <Compile Include="Assets\Scripts\AudioManager.cs" />
-     <Compile Include="Assets\Scripts\ChangePanelStyle.cs" />
      <Compile Include="Assets\Scripts\ExitButton.cs" />
      <Compile Include="Assets\Scripts\GameControl.cs" />
      <Compile Include="Assets\Scripts\GuiLoader.cs" />

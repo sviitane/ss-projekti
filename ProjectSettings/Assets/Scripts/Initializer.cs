@@ -19,6 +19,5 @@ public class Initializer : MonoBehaviour {
 		GuiLoader.loader.displayOtherText = false;
 		GuiLoader.loader.selectScene = "";
 		GuiLoader.loader.goToSceneAfterStory = false; 
-
 	}
 }
