@@ -31,7 +31,7 @@ public class AudioManager : MonoBehaviour {
 			PlayMusic ("menuMusic");
 		else if(Application.loadedLevelName == "Tut_Level1")
 			PlayMusic ("stars");
-		else if(Application.loadedLevelName == "Tut_Level2")
+		else if(Application.loadedLevelName == "Intro2")
 			PlayMusic ("thunder");
 		else if(Application.loadedLevelName == "Level1")
 			PlayMusic ("ode");

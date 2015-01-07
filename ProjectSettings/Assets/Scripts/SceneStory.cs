@@ -31,6 +31,9 @@ public class StoryText{
 	// to be done, faces for different texts
 	public Texture2D goodFace;
 	public Texture2D badFace;
+
+	// if we want to change the game state
+	public bool changeState;
 }
 
 public class SceneStory : MonoBehaviour {
@@ -41,8 +44,18 @@ public class SceneStory : MonoBehaviour {
 	// flow for the story in this scene
 	public StoryText[] sceneStoryFlow;
 
+	public int sceneState;
+
 	void Start(){
 		GuiLoader.loader.story = this;
+		sceneState = 0;
 	}
 
+	public void AddToState(int val){
+		sceneState = sceneState + 1;
+	}
+
+	public int GetSceneState(){
+		return this.sceneState;
+	}
 }

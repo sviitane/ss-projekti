@@ -59,6 +59,7 @@ public class GuiLoader : MonoBehaviour {
 		currentStorySlide = 0;
 		displayOtherText = false;
 		reloadListeners ();
+		text = "";
 	}
 
 	void Awake(){
@@ -171,6 +172,11 @@ public class GuiLoader : MonoBehaviour {
 			storyMode = false;
 			changeText("");
 		}
+
+		if (t.changeState) {
+			Debug.Log("Story slide has state change set, adding to state");
+			GameObject.Find("SceneStory").SendMessage("AddToState", 1);
+		}
 	}
 
 	public void checkListener(){
@@ -204,6 +210,11 @@ public class GuiLoader : MonoBehaviour {
 			Debug.Log("Good choice has chaos change value specified, changing karma");
 			GameControl.control.AddOrReduceChaos((int)t.goodOptionChaosChange);
 		}
+
+		if (t.changeState) {
+			Debug.Log("Story slide has state change set, adding to state");
+			GameObject.Find("SceneStory").SendMessage("AddToState", 1);
+		}
 	}
 
 	public void badListener(){
@@ -218,6 +229,11 @@ public class GuiLoader : MonoBehaviour {
 		if(t.badOptionChaosChange != 0){
 			Debug.Log("Good choice has chaos change value specified, changing karma");
 			GameControl.control.AddOrReduceChaos((int)t.badOptionChaosChange);
+		}
+
+		if (t.changeState) {
+			Debug.Log("Story slide has state change set, adding to state");
+			GameObject.Find("SceneStory").SendMessage("AddToState", 1);
 		}
 	}
 
