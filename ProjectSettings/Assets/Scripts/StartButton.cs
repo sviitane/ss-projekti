@@ -23,7 +23,7 @@ public class StartButton : MonoBehaviour {
 		mat.color = defaultColor;
 		Debug.Log ("Changing map");
 		InteractiveAudioManager.audioManager.PlaySound ("blop");
-		Application.LoadLevel ("Tut_Level1");
+		Application.LoadLevel ("Intro");
 
 		// This is a new game
 		GameControl.control.startNewGame ();

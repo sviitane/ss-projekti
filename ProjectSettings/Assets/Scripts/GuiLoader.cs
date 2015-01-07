@@ -9,6 +9,8 @@ public class GuiLoader : MonoBehaviour {
 
 	// bool to determine how to interact with the game
 	public bool storyMode;
+	public bool goToSceneAfterStory;
+	public string selectScene;
 
 	public RectTransform panel;
 	public Text panelText;
@@ -17,6 +19,7 @@ public class GuiLoader : MonoBehaviour {
 	public Button nextButton;
 	public Button checkAction;
 	public Button continueAction;
+	public Button toScene;
 
 	// custom styles for stuff
 	public GUIStyle customBoxStyle;
@@ -132,6 +135,10 @@ public class GuiLoader : MonoBehaviour {
 		if(t.isEndOfScene){
 			Debug.Log ("Story slide was end of scene");
 			GuiLoader.loader.mapCleared = true;
+			if(goToSceneAfterStory){
+				nextButton.gameObject.SetActive(false);
+				continueAction.gameObject.SetActive(true);
+			}
 		}
 
 		// if canChoose is enabled, we chec if options have been specified.
@@ -148,6 +155,8 @@ public class GuiLoader : MonoBehaviour {
 			}
 
 		}else{
+
+			//Todo: addcheck
 			goodOption.gameObject.SetActive(false);
 			badOption.gameObject.SetActive(false);
 			nextButton.gameObject.SetActive(true);
@@ -236,6 +245,9 @@ public class GuiLoader : MonoBehaviour {
 			GameObject.Find("SceneStory").SendMessage("AddToState", 1);
 		}
 	}
+
+	
+
 
 	public void reloadListeners(){
 		goodOption.onClick.AddListener (()=> {goodListener();});
