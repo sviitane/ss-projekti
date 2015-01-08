@@ -34,6 +34,9 @@ public class StoryText{
 
 	// if we want to change the game state
 	public bool changeState;
+
+	// end of tutorial
+	public bool isEndOfTutorial;
 }
 
 public class SceneStory : MonoBehaviour {

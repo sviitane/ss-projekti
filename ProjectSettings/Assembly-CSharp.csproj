@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\IntroSoundEffects.cs" />
      <Compile Include="Assets\Scripts\LoadButton.cs" />
      <Compile Include="Assets\Scripts\MuteButton.cs" />
+     <Compile Include="Assets\Scripts\QuitGame.cs" />
      <Compile Include="Assets\Scripts\SceneStory.cs" />
      <Compile Include="Assets\Scripts\ScrollableView.cs" />
      <Compile Include="Assets\Scripts\StartButton.cs" />

@@ -56,6 +56,8 @@ public class GuiLoader : MonoBehaviour {
 	private StoryText t;
 
 	void Start(){
+		goodOption.gameObject.SetActive (false);
+		badOption.gameObject.SetActive (false);
 		mapCleared = false;
 		mapClearText = "Congratulations, you have completed all actions in" + Application.loadedLevelName + ", click on the arrow to continue";
 		nextLevel = Application.loadedLevel + 1;
