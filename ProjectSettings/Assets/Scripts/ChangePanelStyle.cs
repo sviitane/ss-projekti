@@ -46,16 +46,8 @@ public class ChangePanelStyle : MonoBehaviour {
 //		scrollview2.sizeDelta = new Vector2(scrollwidth, 20);
 			//buttonplacechange
 //		
- 			Button nextB = GuiLoader.loader.nextButton;
 			//nextB.transform.position = Vector3 (20, 0, 0);
 			//nextB.transform.position= new Vector3(200,200, 20);
-		 var rectTransform = nextB.GetComponent<RectTransform>();
-//
-		rectTransform.position = new Vector2(500,255);
-		GuiLoader.loader.continueAction.GetComponent<RectTransform>().position = new Vector2(500,255);
-
-		GuiLoader.loader.badOption.GetComponent<RectTransform>().position = new Vector2(400,255);
-		GuiLoader.loader.goodOption.GetComponent<RectTransform>().position = new Vector2(280,255);
 			//ChangeButtonHight(nextB, newButtons);
 
 		//Rect sample_size = nextB.GetComponent<RectTransform>().rect;
