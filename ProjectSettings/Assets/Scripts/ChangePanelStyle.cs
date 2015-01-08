@@ -14,10 +14,8 @@ public class ChangePanelStyle : MonoBehaviour {
 	void Start () {
 	
 
-
+			//GuiLoader.loader = new GuiLoader ();
 		//	rectTransform.sizeDelta = new Vector2( yourWidth, yourHeight);
-
-		if (newHeight != null && newHeight > 0  ) {
 
 			//change panel size
 			var rt = GuiLoader.loader.panel;
@@ -25,23 +23,45 @@ public class ChangePanelStyle : MonoBehaviour {
 			var width = rt.sizeDelta.x;
 			rt.sizeDelta = new Vector2 (width, newHeight);
 			//change scrollViewSize // default is 57.6
-
+			
+			
 			var scrollview = GuiLoader.loader.scrollViewText;
-			var scrollwidth =scrollview.sizeDelta.x;
-			GuiLoader.loader.scrollViewText.sizeDelta = new Vector2(scrollwidth, newScrollViewHeight);
+		 //   var rt2 = scrollview.transform.GetComponent<RectTransform> ();
+		//RectTransformExtensions.SetHeight (rt2, 30);
 
+			//var scrollwidth =scrollview.sizeDelta.x;
+			//GuiLoader.loader.scrollViewText.sizeDelta = new Vector2(scrollwidth, newScrollViewHeight);
+	
+
+		//RectTransform rTrans =  scrollview.transform.GetComponent<RectTransform>();
+		
+		// set new width and height
+		
+	//	rTrans.anchoredPosition = new Vector2(15, 20);
+
+			//var jotain  = GuiLoader.loader.panel.
+		//	scrollview.rect.Set(0,20, scrollwidth, 166f );
+
+	//	var scrollview2 = scrollview.GetComponent<RectTransform> ();
+//		scrollview2.sizeDelta = new Vector2(scrollwidth, 20);
 			//buttonplacechange
 //		
  			Button nextB = GuiLoader.loader.nextButton;
-//			var rectTransform = nextB.GetComponent<RectTransform>();
+			//nextB.transform.position = Vector3 (20, 0, 0);
+			//nextB.transform.position= new Vector3(200,200, 20);
+		 var rectTransform = nextB.GetComponent<RectTransform>();
 //
-//			rectTransform.position = new Vector2(150,150);
+		rectTransform.position = new Vector2(500,255);
+		GuiLoader.loader.continueAction.GetComponent<RectTransform>().position = new Vector2(500,255);
 
+		GuiLoader.loader.badOption.GetComponent<RectTransform>().position = new Vector2(400,255);
+		GuiLoader.loader.goodOption.GetComponent<RectTransform>().position = new Vector2(280,255);
 			//ChangeButtonHight(nextB, newButtons);
 
+		//Rect sample_size = nextB.GetComponent<RectTransform>().rect;
 
 
-		}
+
 
 
 		if (newFontSize != null || newFontSize > 0) {

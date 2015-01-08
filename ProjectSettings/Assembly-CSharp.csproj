@@ -52,6 +52,7 @@
      <Compile Include="Assets\Scripts\AudioManager.cs" />
      <Compile Include="Assets\Scripts\ChangePanelStyle.cs" />
      <Compile Include="Assets\Scripts\ExitButton.cs" />
+     <Compile Include="Assets\Scripts\Extencions\RectTransformExtensions.cs" />
      <Compile Include="Assets\Scripts\GameControl.cs" />
      <Compile Include="Assets\Scripts\GuiLoader.cs" />
      <Compile Include="Assets\Scripts\Initializer.cs" />
