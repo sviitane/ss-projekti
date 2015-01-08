@@ -156,10 +156,13 @@ public class GuiLoader : MonoBehaviour {
 
 		}else{
 
-			//Todo: addcheck
 			goodOption.gameObject.SetActive(false);
 			badOption.gameObject.SetActive(false);
-			nextButton.gameObject.SetActive(true);
+			if(!goToSceneAfterStory){
+				nextButton.gameObject.SetActive(true);}
+			else {
+				nextButton.gameObject.SetActive(false);
+			}
 
 			string nexttext = "Next";
 
